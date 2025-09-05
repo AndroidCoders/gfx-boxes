@@ -29,7 +29,7 @@ impl App {
         sdl3::hint::set("SDL_RENDER_VSYNC", "1");
 
         let window = video_subsystem.window(
-            "gfx-test",
+            "gfx-boxes",
             SCREEN_WIDTH,
             SCREEN_HEIGHT,
         )

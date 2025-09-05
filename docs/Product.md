@@ -1,11 +1,11 @@
 File version: 1.02
 
 **TLDR:**
-This document describes the `gfx-test` project:
+This document describes the `gfx-boxes` project:
 * Rust application for graphical effects using SDL3
 * Displays animated white boxes on black background
 
-`gfx-test` is a Rust application that uses the SDL3 library to create graphical effects. It displays multiple animated white boxes on a black background in a fullscreen window. The application exits when the 'Escape' key is pressed.
+`gfx-boxes` is a Rust application that uses the SDL3 library to create graphical effects. It displays multiple animated white boxes on a black background in a fullscreen window. The application exits when the 'Escape' key is pressed.
 
 The codebase is modular, with `app.rs` for the main application, `game_state.rs` for managing the boxes' positions and frame counter, and `renderer.rs` as a drawing module.
 

@@ -1,7 +1,7 @@
 File version: 1.01
 
 **TLDR:**
-This document specifies the technology stack used in the `gfx-test` project:
+This document specifies the technology stack used in the `gfx-boxes` project:
 * Key technologies: Linux, SDL3, Rust
 * Uses `image` crate for debug PNG image output
 

@@ -1,7 +1,7 @@
 File version: 1.01
 
 **TLDR:**
-This document defines the coding conventions and design principles for the `gfx-test` project:
+This document defines the coding conventions and design principles for the `gfx-boxes` project:
 * Modular design
 * Data-driven design
 * Self-documenting code
@@ -9,7 +9,7 @@ This document defines the coding conventions and design principles for the `gfx-
 
 # Coding Conventions
 
-This document outlines the agreed-upon coding conventions and design principles for the `gfx-test` project.
+This document outlines the agreed-upon coding conventions and design principles for the `gfx-boxes` project.
 
 ## Design Principles
 

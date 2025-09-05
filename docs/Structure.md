@@ -1,7 +1,7 @@
 File version: 1.01
 
 **TLDR:**
-This document provides an overview of the `gfx-test` project's file structure:
+This document provides an overview of the `gfx-boxes` project's file structure:
 * Main directories
 * Key source code and documentation files
 

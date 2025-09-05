@@ -1,7 +1,7 @@
 File version: 1.01
 
 **TLDR:**
-This document lists the core application requirements for `gfx-test`:
+This document lists the core application requirements for `gfx-boxes`:
 * Core application features
 * Video debug output feature
 * Debug output activated by `debug-video-to-png` feature flag

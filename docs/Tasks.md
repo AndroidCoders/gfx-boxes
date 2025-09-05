@@ -1,7 +1,7 @@
 File version: 1.01
 
 **TLDR:**
-This document lists the Development Tasks for the `gfx-test` project:
+This document lists the Development Tasks for the `gfx-boxes` project:
 
 **TASKS:**
 [x] Create a SDL fullscreen canvas with black color

@@ -1,7 +1,7 @@
 File version: 1.01
 
 **TLDR:**
-This document outlines the architecture and components of the `gfx-test` project:
+This document outlines the architecture and components of the `gfx-boxes` project:
 * Simple game loop architecture
 * Key components: `app`, `renderer`, `game_state`, `frame_capture`
 

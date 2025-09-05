@@ -286,7 +286,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "gfx-test"
+name = "gfx-boxes"
 version = "0.1.0"
 dependencies = [
  "image",
