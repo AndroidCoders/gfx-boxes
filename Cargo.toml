@@ -1,0 +1,11 @@
+[package]
+name = "gfx-boxes"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+sdl3 = "0.14.41"
+image = { version = "0.25.1", features = ["png"] }
+
+[features]
+debug-video-to-png = []
