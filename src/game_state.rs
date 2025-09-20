@@ -24,7 +24,16 @@ impl GameState {
         }
     }
 
-    pub fn update(&mut self, width: u32, height: u32) {
+    /// Updates the state of all game objects.
+    ///
+    /// This includes advancing their positions based on velocity and handling
+    /// collisions with the boundaries of the given `width` and `height`.
+    ///
+    /// # Arguments
+    ///
+    /// * `width` - The width of the game area.
+    /// * `height` - The height of the game area.
+pub fn update(&mut self, width: u32, height: u32) {
         self.frame_counter += 1;
         for object in &mut self.objects {
             let next_x = object.rect.x + object.velocity.0;

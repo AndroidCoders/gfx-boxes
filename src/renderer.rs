@@ -1,6 +1,6 @@
+use sdl3::pixels::Color;
 use sdl3::render::Canvas;
 use sdl3::video::Window;
-use sdl3::pixels::Color;
 use crate::game_state::GameState;
 use crate::config::RendererConfig;
 
@@ -19,14 +19,24 @@ impl Renderer {
         }
     }
 
-    pub fn draw(&self, canvas: &mut Canvas<Window>, game_state: &GameState) -> Result<(), String> {
+    /// Draws the current game state onto the canvas.
+    ///
+    /// # Arguments
+    ///
+    /// * `canvas` - A mutable reference to the SDL `Canvas`.
+    /// * `game_state` - A reference to the current `GameState`.
+    ///
+    /// # Returns
+    ///
+    /// A `Result` indicating success (`()`) or an error (`String`).
+pub fn draw(&self, canvas: &mut Canvas<Window>, game_state: &GameState) -> Result<(), sdl3::render::TargetRenderError> {
         canvas.set_draw_color(self.background_color);
         canvas.clear();
         canvas.set_draw_color(self.object_color);
         for object in &game_state.objects {
-            canvas.fill_rect(object.rect).map_err(|e| e.to_string())?;
+            canvas.fill_rect(object.rect).map_err(|e| sdl3::render::TargetRenderError::SdlError(e))?;
         }
-        canvas.present();
+        // No canvas.present() here, as we are drawing to a texture
         Ok(())
     }
 }

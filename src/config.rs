@@ -1,7 +1,7 @@
 use serde::Deserialize;
 use std::fs;
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Clone)]
 pub struct Config {
     pub window: WindowConfig,
     pub renderer: RendererConfig,
@@ -9,27 +9,30 @@ pub struct Config {
         pub debug: DebugConfig,    pub objects: Vec<ObjectConfig>,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Clone)]
 pub struct WindowConfig {
     pub title: String,
     pub width: u32,
     pub height: u32,
+    pub virtual_width: u32,
+    pub virtual_height: u32,
     pub fullscreen: bool,
     pub vsync: bool,
+    pub scaling_quality: String,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Clone)]
 pub struct RendererConfig {
     pub background_color: [u8; 3],
     pub object_color: [u8; 3],
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Clone)]
 pub struct PhysicsConfig {
     pub updates_per_second: u32,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Clone)]
 pub struct DebugConfig {
     pub enable_frame_capture: bool,
     pub output_directory: String,
@@ -37,6 +40,7 @@ pub struct DebugConfig {
     pub frame_capture_interval: u32,
 }
 
+/// Configuration for an individual game object.
 #[derive(Deserialize, Clone)]
 pub struct ObjectConfig {
     pub x: i32,

@@ -21,6 +21,18 @@ impl FrameCapture {
         }
     }
 
+    /// Captures a frame from the canvas and stores it in a buffer.
+    ///
+    /// # Arguments
+    ///
+    /// * `frame_counter` - The current frame number.
+    /// * `width` - The width of the canvas.
+    /// * `height` - The height of the canvas.
+    /// * `canvas` - A mutable reference to the SDL canvas.
+    ///
+    /// # Returns
+    ///
+    /// A `Result` indicating success (`()`) or an error (`String`).
     pub fn capture_frame(&mut self, frame_counter: u32, width: u32, height: u32, canvas: &mut Canvas<Window>) -> Result<(), String> {
         if self.captured_frames.len() < self.max_captured_frames &&
            (frame_counter == 1 || (frame_counter % self.frame_capture_interval == 0))
