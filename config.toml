@@ -1,0 +1,44 @@
+
+[window]
+title = "gfx-boxes"
+width = 1920
+height = 1080
+fullscreen = true
+vsync = true
+
+[renderer]
+background_color = [0, 0, 0]
+object_color = [255, 255, 255]
+
+[physics]
+updates_per_second = 60
+
+[debug]
+enable_frame_capture = false
+output_directory = "debug-output"
+max_captured_frames = 5
+frame_capture_interval = 100
+
+[[objects]]
+x = 100
+y = 100
+width = 100
+height = 100
+vx = 1
+vy = 1
+
+[[objects]]
+x = 860
+y = 440
+width = 200
+height = 200
+vx = 2
+vy = 1
+
+[[objects]]
+x = 300
+y = 300
+width = 150
+height = 150
+vx = -1
+vy = -1

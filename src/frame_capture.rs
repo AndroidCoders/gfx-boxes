@@ -2,23 +2,28 @@ use std::fs;
 use image::{ColorType};
 use sdl3::render::Canvas;
 use sdl3::video::Window;
-
-const MAX_CAPTURED_FRAMES: usize = 10;
+use crate::config::DebugConfig;
 
 pub struct FrameCapture {
-    captured_frames: Vec<(u32, u32, u32, Vec<u8>)>,
+    captured_frames: Vec<(u32, u32, u32, Vec<u8>)>, 
+    output_directory: String,
+    max_captured_frames: usize,
+    frame_capture_interval: u32,
 }
 
 impl FrameCapture {
-    pub fn new() -> Self {
+    pub fn new(config: &DebugConfig) -> Self {
         Self {
-            captured_frames: Vec::with_capacity(MAX_CAPTURED_FRAMES),
+            captured_frames: Vec::with_capacity(config.max_captured_frames),
+            output_directory: config.output_directory.clone(),
+            max_captured_frames: config.max_captured_frames,
+            frame_capture_interval: config.frame_capture_interval,
         }
     }
 
     pub fn capture_frame(&mut self, frame_counter: u32, width: u32, height: u32, canvas: &mut Canvas<Window>) -> Result<(), String> {
-        if self.captured_frames.len() < MAX_CAPTURED_FRAMES &&
-           (frame_counter == 1 || (frame_counter % 100 == 0 && frame_counter <= 900))
+        if self.captured_frames.len() < self.max_captured_frames &&
+           (frame_counter == 1 || (frame_counter % self.frame_capture_interval == 0))
         {
             let mut surface = canvas.read_pixels(None).map_err(|e| e.to_string())?;
             let bytes_per_pixel_source = 4; // Assuming RGBX8888
@@ -47,14 +52,13 @@ impl FrameCapture {
 
     pub fn save_frames(&self) {
         println!("Saving captured frames...");
-        let output_dir = "output";
-        if let Err(e) = fs::create_dir_all(output_dir) {
-            eprintln!("Error creating output directory {}: {}", output_dir, e);
+        if let Err(e) = fs::create_dir_all(&self.output_directory) {
+            eprintln!("Error creating output directory {}: {}", self.output_directory, e);
             return;
         }
 
         for (frame_counter, width, height, buffer) in &self.captured_frames {
-            let filename = format!("{}/frame_{:04}.png", output_dir, frame_counter);
+            let filename = format!("{}/frame_{:04}.png", self.output_directory, frame_counter);
             match image::save_buffer(&filename, buffer, *width, *height, ColorType::Rgba8) {
                 Ok(_) => println!("Successfully saved frame to {}", filename),
                 Err(e) => eprintln!("Error saving frame {}: {}", filename, e),
