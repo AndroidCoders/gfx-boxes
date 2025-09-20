@@ -1,4 +1,4 @@
-File version: 1.01
+File version: 1.02
 
 **TLDR:**
 This document defines the coding conventions and design principles for the `gfx-boxes` project:
@@ -6,6 +6,7 @@ This document defines the coding conventions and design principles for the `gfx-
 * Data-driven design
 * Self-documenting code
 * Encapsulation
+* Clear descriptions of objects and functions in comments placed at top of definitions
 
 # Coding Conventions
 
@@ -14,7 +15,7 @@ This document outlines the agreed-upon coding conventions and design principles 
 ## Design Principles
 
 - **Modular Design**: The codebase should be split into logical modules with clear responsibilities (e.g., `renderer`, `game_state`).
-- **Data-Driven Design**: Logic (functions) should be separated from the data it operates on (structs). Data is read from files or variables, not hardcoded in the source code.
+- **Data-Driven Design**: Logic (functions) should be separated from the data it operates on (structs). Data is read from configuration files, not hardcoded in the source code.
 - **Encapsulation**: All logic should be encapsulated within functions or methods.
 
 ## Code Style
@@ -33,7 +34,7 @@ This document outlines the agreed-upon coding conventions and design principles 
 
 ## Configuration
 
-- **Constants**: Global configuration values and constants (e.g., screen dimensions) should be defined at the top of the `src/main.rs` file, or read from configuration files.
+- **Externalized Configuration**: All global configuration values and constants (e.g., screen dimensions, colors, physics parameters) should be defined in `config.toml` and loaded at application startup. This allows for easy modification of application behavior without recompilation.
 
 ## Development Philosophy: The Pragmatic Programmer
 

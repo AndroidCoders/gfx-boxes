@@ -1,9 +1,9 @@
-File version: 1.01
+File version: 1.02
 
 **TLDR:**
 * This project is a Rust application for creating graphical effects.
 * It displays multiple animated white boxes on a fullscreen background.
-* The application can be run with or without a debug feature to save PNG screenshots.
+* The application's behavior, including debug features, is configured via `config.toml`.
 
 A project for learning the the Rust programming language by creating graphical effects. This application displays multiple white boxes that animate across a black fullscreen background.
 
@@ -17,12 +17,13 @@ To build and run the application:
 cargo run
 ```
 
+## Configuration
+
+The application's behavior is controlled by the `config.toml` file at the project root. This includes window settings, renderer colors, physics parameters, and debug features.
+
 ## Debug Features
 
 ### Video Debug Output
 
-To enable saving PNG screenshots for debugging, run the application with the `debug-video-to-png` feature flag:
+To enable saving PNG screenshots for debugging, set `enable_frame_capture = true` in the `[debug]` section of `config.toml`. The output directory, maximum captured frames, and capture interval are also configured in this section.
 
-```bash
-cargo run --features debug-video-to-png
-```

@@ -1,4 +1,4 @@
-File version: 1.01
+File version: 1.02
 
 **TLDR:**
 This document provides an overview of the `gfx-boxes` project's file structure:
@@ -19,6 +19,7 @@ docs/Workflow.md: Development Workflow with GitHub.
 
 src/main.rs: Main application source code.
 src/app.rs: Initializes SDL (graphics), creates the window, and runs the main application loop.
+src/config.rs: Defines the application's configuration structures and handles loading from `config.toml`.
 src/renderer.rs: Handles all drawing operations on the SDL Canvas.
 src/game_state.rs: Game state module.
-src/frame_capture.rs: A debug module for saving screenshots from the running application.
+src/frame_capture.rs: A module for saving screenshots from the running application, configurable via `config.toml`.
