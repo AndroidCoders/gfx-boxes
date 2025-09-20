@@ -1,5 +1,6 @@
 use sdl3::rect::Rect;
 use crate::config::ObjectConfig;
+use crate::physics::{update_objects, resolve_object_collisions};
 
 pub struct GameObject {
     pub rect: Rect,
@@ -35,19 +36,7 @@ impl GameState {
     /// * `height` - The height of the game area.
 pub fn update(&mut self, width: u32, height: u32) {
         self.frame_counter += 1;
-        for object in &mut self.objects {
-            let next_x = object.rect.x + object.velocity.0;
-            if next_x < 0 || (next_x + object.rect.width() as i32) > width as i32 {
-                object.velocity.0 = -object.velocity.0;
-            }
-
-            let next_y = object.rect.y + object.velocity.1;
-            if next_y < 0 || (next_y + object.rect.height() as i32) > height as i32 {
-                object.velocity.1 = -object.velocity.1;
-            }
-
-            object.rect.x += object.velocity.0;
-            object.rect.y += object.velocity.1;
-        }
+        update_objects(&mut self.objects, width, height);
+        resolve_object_collisions(&mut self.objects);
     }
 }

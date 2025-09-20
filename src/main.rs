@@ -3,6 +3,7 @@ mod game_state;
 mod renderer;
 mod config;
 mod texture_manager;
+mod physics;
 
 mod frame_capture;
 
