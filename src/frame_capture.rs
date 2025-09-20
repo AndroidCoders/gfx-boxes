@@ -3,22 +3,21 @@ use image::{ColorType};
 use sdl3::render::Canvas;
 use sdl3::video::Window;
 
-const MAX_CAPTURED_FRAMES: usize = 10;
-
 pub struct FrameCapture {
-    captured_frames: Vec<(u32, u32, u32, Vec<u8>)>,
+    captured_frames: Vec<(u32, u32, u32, Vec<u8>)>, 
+    max_captured_frames: usize,
 }
 
 impl FrameCapture {
-    pub fn new() -> Self {
+    pub fn new(max_frames: usize) -> Self {
         Self {
-            captured_frames: Vec::with_capacity(MAX_CAPTURED_FRAMES),
+            captured_frames: Vec::with_capacity(max_frames),
+            max_captured_frames: max_frames,
         }
     }
 
     pub fn capture_frame(&mut self, frame_counter: u32, width: u32, height: u32, canvas: &mut Canvas<Window>) -> Result<(), String> {
-        if self.captured_frames.len() < MAX_CAPTURED_FRAMES &&
-           (frame_counter == 1 || (frame_counter % 100 == 0 && frame_counter <= 900))
+        if self.captured_frames.len() < self.max_captured_frames &&           (frame_counter == 1 || (frame_counter % 100 == 0 && frame_counter <= 900))
         {
             let mut surface = canvas.read_pixels(None).map_err(|e| e.to_string())?;
             let bytes_per_pixel_source = 4; // Assuming RGBX8888

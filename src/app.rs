@@ -4,13 +4,11 @@ use sdl3::render::Canvas;
 use sdl3::event::Event;
 use sdl3::keyboard::Keycode;
 
+use crate::config::Config;
 use crate::game_state::GameState;
 use crate::renderer::Renderer;
 #[cfg(feature = "debug-video-to-png")]
 use crate::frame_capture::FrameCapture;
-
-const SCREEN_WIDTH: u32 = 1920;
-const SCREEN_HEIGHT: u32 = 1080;
 
 pub struct App {
     canvas: Canvas<Window>,
@@ -22,7 +20,7 @@ pub struct App {
 }
 
 impl App {
-    pub fn new() -> Result<Self, Box<dyn std::error::Error>> {
+    pub fn new(config: &Config) -> Result<Self, Box<dyn std::error::Error>> {
         let sdl_context = sdl3::init()?;
         let video_subsystem = sdl_context.video()?;
 
@@ -30,15 +28,15 @@ impl App {
 
         let window = video_subsystem.window(
             "gfx-boxes",
-            SCREEN_WIDTH,
-            SCREEN_HEIGHT,
+            config.window.width,
+            config.window.height,
         )
         .fullscreen()
         .build()?;
 
         let canvas = window.into_canvas();
 
-        let game_state = GameState::new();
+        let game_state = GameState::new(&config.objects);
         let event_pump = sdl_context.event_pump()?;
         let renderer = Renderer::new();
 
@@ -48,7 +46,7 @@ impl App {
             event_pump,
             renderer,
             #[cfg(feature = "debug-video-to-png")]
-            frame_capture: Some(FrameCapture::new()),
+            frame_capture: Some(FrameCapture::new(config.debug.max_captured_frames)),
         })
     }
 

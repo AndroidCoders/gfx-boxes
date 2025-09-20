@@ -1,4 +1,5 @@
 use sdl3::rect::Rect;
+use crate::config::ObjectConfig;
 
 pub struct GameObject {
     pub rect: Rect,
@@ -11,21 +12,12 @@ pub struct GameState {
 }
 
 impl GameState {
-    pub fn new() -> Self {
-        let objects = vec![
-            GameObject {
-                rect: Rect::new(100, 100, 100, 100),
-                velocity: (1, 0),
-            },
-            GameObject {
-                rect: Rect::new(200, 200, 50, 50),
-                velocity: (2, 1),
-            },
-            GameObject {
-                rect: Rect::new(300, 300, 75, 75),
-                velocity: (-1, -1),
-            },
-        ];
+    pub fn new(objects_config: &[ObjectConfig]) -> Self {
+        let objects = objects_config.iter().map(|o| GameObject {
+            rect: Rect::new(o.x, o.y, o.width, o.height),
+            velocity: (o.vx, o.vy),
+        }).collect();
+
         Self {
             objects,
             frame_counter: 0,
