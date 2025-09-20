@@ -1,4 +1,3 @@
-
 [window]
 title = "gfx-boxes"
 width = 1920
@@ -45,3 +44,43 @@ width = 60
 height = 60
 vx = -2
 vy = -1
+
+[[objects]]
+x = 50
+y = 50
+width = 15
+height = 15
+vx = 3
+vy = 1
+
+[[objects]]
+x = 500
+y = 100
+width = 25
+height = 25
+vx = -1
+vy = 2
+
+[[objects]]
+x = 150
+y = 250
+width = 20
+height = 20
+vx = 2
+vy = -1
+
+[[objects]]
+x = 400
+y = 300
+width = 30
+height = 30
+vx = -2
+vy = -2
+
+[[objects]]
+x = 10
+y = 350
+width = 10
+height = 10
+vx = 1
+vy = -3
