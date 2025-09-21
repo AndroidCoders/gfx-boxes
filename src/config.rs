@@ -30,6 +30,9 @@ pub struct RendererConfig {
 #[derive(Deserialize, Clone)]
 pub struct PhysicsConfig {
     pub updates_per_second: u32,
+    pub damping_factor: f32,
+    pub max_speed: f32,
+    pub min_speed: f32,
 }
 
 #[derive(Deserialize, Clone)]
@@ -43,12 +46,12 @@ pub struct DebugConfig {
 /// Configuration for an individual game object.
 #[derive(Deserialize, Clone)]
 pub struct ObjectConfig {
-    pub x: i32,
-    pub y: i32,
+    pub x: f32,
+    pub y: f32,
     pub width: u32,
     pub height: u32,
-    pub vx: i32,
-    pub vy: i32,
+    pub vx: f32,
+    pub vy: f32,
 }
 
 pub fn load_config() -> Result<Config, Box<dyn std::error::Error>> {

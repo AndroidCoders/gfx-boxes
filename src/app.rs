@@ -104,7 +104,7 @@ impl<'a> App<'a> {
             let (width, height) = self.canvas.output_size().map_err(|e| e.to_string())?;
 
             while accumulator >= self.timestep {
-                self.game_state.update(self.config.window.virtual_width, self.config.window.virtual_height);
+                self.game_state.update(self.config.window.virtual_width, self.config.window.virtual_height, &self.config.physics);
                 accumulator -= self.timestep;
             }
 

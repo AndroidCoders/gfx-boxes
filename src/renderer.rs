@@ -34,7 +34,7 @@ pub fn draw(&self, canvas: &mut Canvas<Window>, game_state: &GameState) -> Resul
         canvas.clear();
         canvas.set_draw_color(self.object_color);
         for object in &game_state.objects {
-            canvas.fill_rect(object.rect).map_err(|e| sdl3::render::TargetRenderError::SdlError(e))?;
+            canvas.fill_rect(object.to_rect()).map_err(|e| sdl3::render::TargetRenderError::SdlError(e))?;
         }
         // No canvas.present() here, as we are drawing to a texture
         Ok(())
